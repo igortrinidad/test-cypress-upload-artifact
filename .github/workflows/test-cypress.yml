@@ -6,21 +6,18 @@ jobs:
   install:
     runs-on: ubuntu-22.04
     container:
-      image: cypress/browsers:node-20.11.0-chrome-121.0.6167.184-1-ff-123.0-edge-121.0.2277.128-1
+      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
       options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cypress install
+      - name: Run example tests
         uses: cypress-io/github-action@v6
         with:
-          record: true
-          parallel: true
           working-directory: ./tests/e2e
-          publish-summary: true
 
-      - name: Save build folder
+      - name: Saving artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build
